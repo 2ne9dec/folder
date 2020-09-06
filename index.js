@@ -1,6 +1,6 @@
 const arr = [1, 25, -5, 0, 99, -75, 76, 33, -44, 44];
-const increment = [];
-const decrement = [];
+const sortArr = [];
+const reverseArr = [];
 
 const div = document.querySelector('.div');
 const button = document.querySelectorAll('input');
@@ -9,12 +9,12 @@ div.append(arr);
 
 button[0].addEventListener('click', () => {
     arr.sort((a, b) => a - b);
-    increment.push(arr);
-    result[0].append(increment);
+    sortArr.push(arr);
+    result[0].append(sortArr);
 });
 
 button[1].addEventListener('click', () => {
     arr.sort((a, b) => b - a);
-    decrement.push(arr);
-    result[1].append(decrement);
+    reverseArr.push(arr);
+    result[1].append(reverseArr);
 });
