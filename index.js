@@ -1,20 +1,43 @@
-const arr = [1, 25, -5, 0, 99, -75, 76, 33, -44, 44];
-const sortArr = [];
-const reverseArr = [];
+const arr = [];
 
-const div = document.querySelector('.div');
-const button = document.querySelectorAll('input');
-const result = document.querySelectorAll('.result');
-div.append(arr);
+function randomNum (min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1));
+};
 
-button[0].addEventListener('click', () => {
-    arr.sort((a, b) => a - b);
-    sortArr.push(arr);
-    result[0].append(sortArr);
-});
+for (let i = 0; i < 10; i++) {
+    arr.push(randomNum(-99, 99));
+};
 
-button[1].addEventListener('click', () => {
-    arr.sort((a, b) => b - a);
-    reverseArr.push(arr);
-    result[1].append(reverseArr);
-});
+    const div = document.querySelector('.div');
+    const button = document.querySelectorAll('input');
+    const result = document.querySelectorAll('.result');
+    div.append(arr);
+
+    
+    function quickSort(arr) {
+        if (arr.length < 2) {
+            return arr;
+        }
+
+        const pivot = arr.length / 2;
+
+        const more = [];
+        const less = [];
+
+        for (let j = 0; j < arr.length; j++) {
+
+            if (j <= pivot) {
+                less.push(arr[j]);
+            }
+
+            else {
+                more.push(arr[j]);
+            }
+        }
+        console.log({
+            ...quickSort(less),
+            pivot,
+            ...quickSort(more)
+        });
+    };
+    quickSort(arr);
