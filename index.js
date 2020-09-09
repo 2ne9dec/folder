@@ -1,9 +1,7 @@
 const arr = [];
-
 function randomNum (min, max) {
     return min + Math.floor(Math.random() * (max - min + 1));
 };
-
 for (let i = 0; i < 10; i++) {
     arr.push(randomNum(-99, 99));
 };
@@ -42,8 +40,8 @@ for (let i = 0; i < 10; i++) {
     };
    
     button[0].addEventListener('click', () => {
-        result[0].append(qsort(arr))
+        result[0].append(qsort(arr));
     });
     button[1].addEventListener('click', () => {
-        result[1].append(arr.reverse())
+        result[1].append(arr.reverse());
     });
