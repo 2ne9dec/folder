@@ -13,31 +13,35 @@ for (let i = 0; i < 10; i++) {
     const result = document.querySelectorAll('.result');
     div.append(arr);
 
-    
-    function quickSort(arr) {
-        if (arr.length < 2) {
-            return arr;
-        }
+    const partition = (arr, low, hi) => {
 
-        const pivot = arr.length / 2;
-
-        const more = [];
-        const less = [];
-
-        for (let j = 0; j < arr.length; j++) {
-
-            if (j <= pivot) {
-                less.push(arr[j]);
+        const pivotPositon = Math.floor(Math.random() * arr.length);
+        const pivot = arr[pivotPositon];
+        while (hi >= low) {
+            while (arr[hi] > pivot) {
+                hi--;
             }
-
-            else {
-                more.push(arr[j]);
+            while (arr[low] < pivot) {
+                low++;
+            }
+            if  (hi >= low) {
+                const tmp = arr[low];
+                arr[low] = arr[hi];
+                arr[hi] = tmp;
+                hi--;
+                low++;
             }
         }
-        console.log({
-            ...quickSort(less),
-            pivot,
-            ...quickSort(more)
-        });
+        return low;
+    }
+
+    const qsort = (arr, low = 0, hi = arr.length-1) => {
+        if (low < hi) {
+            const index = partition(arr, low, hi);
+            qsort(arr, low, index-1);
+            qsort(arr, index, hi);
+        }
+        return arr;
     };
-    quickSort(arr);
+
+    console.log(qsort(arr));
