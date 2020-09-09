@@ -10,38 +10,38 @@ for (let i = 0; i < 10; i++) {
     const result = document.querySelectorAll('.result');
     div.append(arr);
 
-    const partition = (arr, low, hi) => {
+    const partition = (arr, left, right) => {
         const pivotPositon = Math.floor(Math.random() * arr.length);
         const pivot = arr[pivotPositon];
-        while (hi >= low) {
-            while (arr[hi] > pivot) {
-                hi--;
+        while (right >= left) {
+            while (arr[right] > pivot) {
+                right--;
             }
-            while (arr[low] < pivot) {
-                low++;
+            while (arr[left] < pivot) {
+                left++;
             }
-            if  (hi >= low) {
-                const tmp = arr[low];
-                arr[low] = arr[hi];
-                arr[hi] = tmp;
-                hi--;
-                low++;
+            if  (right >= left) {
+                const tmp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = tmp;
+                right--;
+                left++;
             }
         }
-        return low;
-    }
-    const qsort = (arr, low = 0, hi = arr.length-1) => {
-        if (low < hi) {
-            const index = partition(arr, low, hi);
-            qsort(arr, low, index-1);
-            qsort(arr, index, hi);
+        return left;
+    };
+    const qsort = (arr, left = 0, right = arr.length-1) => {
+        if (left < right) {
+            const index = partition(arr, left, right);
+            qsort(arr, left, index-1);
+            qsort(arr, index, right);
         }
         return arr;
     };
-   
     button[0].addEventListener('click', () => {
         result[0].append(qsort(arr));
     });
     button[1].addEventListener('click', () => {
         result[1].append(arr.reverse());
     });
+
