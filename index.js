@@ -7,14 +7,12 @@ function randomNum (min, max) {
 for (let i = 0; i < 10; i++) {
     arr.push(randomNum(-99, 99));
 };
-
     const div = document.querySelector('.div');
     const button = document.querySelectorAll('input');
     const result = document.querySelectorAll('.result');
     div.append(arr);
 
     const partition = (arr, low, hi) => {
-
         const pivotPositon = Math.floor(Math.random() * arr.length);
         const pivot = arr[pivotPositon];
         while (hi >= low) {
@@ -34,7 +32,6 @@ for (let i = 0; i < 10; i++) {
         }
         return low;
     }
-
     const qsort = (arr, low = 0, hi = arr.length-1) => {
         if (low < hi) {
             const index = partition(arr, low, hi);
@@ -43,5 +40,10 @@ for (let i = 0; i < 10; i++) {
         }
         return arr;
     };
-
-    console.log(qsort(arr));
+   
+    button[0].addEventListener('click', () => {
+        result[0].append(qsort(arr))
+    });
+    button[1].addEventListener('click', () => {
+        result[1].append(arr.reverse())
+    });
